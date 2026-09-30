@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Logo vectorizado</title>
+  <desc>Recreación vectorial del diseño original, con fondo transparente.</desc>
+
+  <!-- Figura naranja -->
+  <polygon
+    points="521,99 636,300 247,923 24,923"
+    fill="#FE6104"/>
+
+  <!-- Figura azul -->
+  <polygon
+    points="677,374 1000,923 766,923 554,568"
+    fill="#144FC7"/>
+</svg>
