@@ -59,6 +59,7 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  overflow-x: hidden;
 }
 
 a {
@@ -1001,6 +1002,239 @@ section,
   background: var(--accent-color);
   inset: 0;
   border-radius: 0px;
+}
+
+/*--------------------------------------------------------------
+# Services Story Section
+--------------------------------------------------------------*/
+.services-story {
+  --story-orange: #f08a24;
+  --story-blue: #71c2e8;
+  background: #183b72;
+  height: 300vh;
+  overflow: visible;
+  position: relative;
+}
+
+.services-story__background {
+  background: #183b72;
+  inset: 0;
+  position: absolute;
+  transition: background-color 650ms ease;
+}
+
+.services-story__sticky {
+  height: 100vh;
+  min-height: 650px;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+}
+
+.services-story__intro {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  left: max(24px, calc((100vw - 1140px) / 2));
+  position: absolute;
+  right: max(24px, calc((100vw - 1140px) / 2));
+  top: 42px;
+  z-index: 2;
+}
+
+.services-story__eyebrow,
+.services-story__progress {
+  font-family: var(--nav-font);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.services-story__progress { color: color-mix(in srgb, #fff, transparent 42%); }
+.services-story__progress span { color: #fff; }
+
+.services-story__track {
+  display: flex;
+  height: 100%;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  transition: transform 70ms linear;
+  will-change: transform;
+  z-index: 1;
+}
+
+.services-story__panel {
+  align-items: center;
+  display: flex;
+  flex: 0 0 100vw;
+  min-width: 100vw;
+  padding: 110px 24px 58px;
+}
+
+.services-story__content {
+  align-items: center;
+  display: grid;
+  gap: clamp(45px, 9vw, 135px);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+  margin: 0 auto;
+  max-width: 1140px;
+  width: 100%;
+}
+
+.services-story__copy {
+  color: #fff;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 420ms ease, transform 520ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.services-story__panel.is-active .services-story__copy {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.services-story__step,
+.services-story__card-label {
+  color: var(--story-blue);
+  font-family: var(--nav-font);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 17px;
+  text-transform: uppercase;
+}
+
+.services-story__copy h2 {
+  color: #fff;
+  font-size: clamp(2.55rem, 5.2vw, 4.65rem);
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  margin: 0;
+  max-width: 610px;
+}
+
+.services-story__copy > p:not(.services-story__step) {
+  color: color-mix(in srgb, #fff, transparent 18%);
+  font-size: clamp(1rem, 1.55vw, 1.15rem);
+  line-height: 1.7;
+  margin: 26px 0 0;
+  max-width: 530px;
+}
+
+.services-story__card {
+  align-self: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 28px;
+  box-shadow: 0 28px 65px rgba(3, 24, 56, 0.28);
+  color: #fff;
+  min-height: 360px;
+  opacity: 0;
+  padding: 36px;
+  transform: translateY(52px) scale(0.93);
+  transition: opacity 420ms ease 100ms, transform 620ms cubic-bezier(.2, .8, .2, 1) 100ms;
+}
+
+.services-story__panel.is-active .services-story__card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.services-story__card > i {
+  align-items: center;
+  background: var(--story-orange);
+  border-radius: 16px;
+  color: #fff;
+  display: inline-flex;
+  font-size: 1.6rem;
+  height: 58px;
+  justify-content: center;
+  margin-bottom: 48px;
+  width: 58px;
+}
+
+.services-story__card--blue > i { background: var(--story-blue); color: #153c70; }
+.services-story__card--orange .services-story__card-label { color: #ffb66d; }
+
+.services-story__card h3 { color: #fff; font-size: 1.65rem; line-height: 1.15; margin: 0 0 14px; }
+.services-story__card > p:not(.services-story__card-label) { color: color-mix(in srgb, #fff, transparent 20%); line-height: 1.6; margin: 0; }
+
+.services-story__card-note {
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+  display: block;
+  font-size: 0.83rem;
+  margin-top: 30px;
+  padding-top: 16px;
+}
+
+.services-story__cta {
+  align-items: center;
+  color: #fff;
+  display: inline-flex;
+  font-family: var(--nav-font);
+  font-size: 0.88rem;
+  font-weight: 700;
+  gap: 9px;
+  margin-top: 30px;
+}
+
+.services-story__cta i { color: var(--story-orange); font-size: 1.25rem; }
+
+@media (min-width: 680px) and (max-width: 991px) {
+  .services-story__content {
+    gap: 22px;
+    grid-template-columns: minmax(0, 0.9fr) minmax(265px, 1fr);
+  }
+
+  .services-story__copy h2 {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+  }
+
+  .services-story__copy > p:not(.services-story__step) {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-top: 18px;
+  }
+
+  .services-story__card {
+    min-height: 0;
+    padding: 26px;
+  }
+
+  .services-story__card > i {
+    height: 48px;
+    margin-bottom: 25px;
+    width: 48px;
+  }
+
+  .services-story__card h3 {
+    font-size: 1.35rem;
+  }
+
+  .services-story__card-note {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 679px) {
+  .services-story { height: auto; overflow: visible; }
+  .services-story__sticky { height: auto; min-height: 0; overflow: visible; position: relative; }
+  .services-story__intro { left: 24px; right: 24px; top: 32px; }
+  .services-story__track { display: block; padding: 110px 24px 45px; transform: none !important; }
+  .services-story__panel { min-width: 0; padding: 28px 0; }
+  .services-story__content { gap: 32px; grid-template-columns: 1fr; max-width: 680px; }
+  .services-story__copy, .services-story__card { opacity: 1; transform: none; }
+  .services-story__card { min-height: 0; }
+}
+
+@media (max-width: 575px) {
+  .services-story__copy h2 { font-size: 2.55rem; }
+  .services-story__card { border-radius: 22px; padding: 28px; }
+  .services-story__card > i { margin-bottom: 35px; }
 }
 
 /*--------------------------------------------------------------

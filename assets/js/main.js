@@ -159,6 +159,55 @@
   window.addEventListener("load", initSwiper);
 
   /**
+   * From tablet width onward, vertical scrolling moves the services story horizontally.
+   * Small screens retain a conventional stacked layout.
+   */
+  function initServicesStory() {
+    const story = document.querySelector('.services-story');
+    if (!story) return;
+
+    const track = story.querySelector('.services-story__track');
+    const background = story.querySelector('.services-story__background');
+    const panels = Array.from(story.querySelectorAll('.services-story__panel'));
+    const progressLabel = story.querySelector('.services-story__progress span');
+    const desktopQuery = window.matchMedia('(min-width: 680px)');
+    let animationFrame;
+
+    function updateStory() {
+      animationFrame = undefined;
+
+      if (!desktopQuery.matches) {
+        track.style.transform = '';
+        background.style.backgroundColor = '';
+        panels.forEach(panel => panel.classList.add('is-active'));
+        return;
+      }
+
+      const rect = story.getBoundingClientRect();
+      const scrollLength = story.offsetHeight - window.innerHeight;
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollLength));
+      const activeIndex = Math.min(panels.length - 1, Math.round(progress * (panels.length - 1)));
+
+      track.style.transform = `translate3d(${-progress * (panels.length - 1) * window.innerWidth}px, 0, 0)`;
+      background.style.backgroundColor = panels[activeIndex].dataset.color;
+      progressLabel.textContent = `0${activeIndex + 1}`;
+      panels.forEach((panel, index) => panel.classList.toggle('is-active', index === activeIndex));
+    }
+
+    function requestUpdate() {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateStory);
+    }
+
+    desktopQuery.addEventListener('change', requestUpdate);
+    window.addEventListener('resize', requestUpdate);
+    document.addEventListener('scroll', requestUpdate, { passive: true });
+    panels[0].classList.add('is-active');
+    updateStory();
+  }
+
+  window.addEventListener('load', initServicesStory);
+
+  /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
   window.addEventListener('load', function(e) {
