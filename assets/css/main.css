@@ -1221,14 +1221,12 @@ section,
 }
 
 @media (max-width: 679px) {
-  .services-story { height: auto; overflow: visible; }
-  .services-story__sticky { height: auto; min-height: 0; overflow: visible; position: relative; }
   .services-story__intro { left: 24px; right: 24px; top: 32px; }
-  .services-story__track { display: block; padding: 110px 24px 45px; transform: none !important; }
-  .services-story__panel { min-width: 0; padding: 28px 0; }
-  .services-story__content { gap: 32px; grid-template-columns: 1fr; max-width: 680px; }
-  .services-story__copy, .services-story__card { opacity: 1; transform: none; }
-  .services-story__card { min-height: 0; }
+  .services-story__panel { padding: 95px 24px 42px; }
+  .services-story__content { gap: 24px; grid-template-columns: minmax(0, 1fr); max-width: 520px; }
+  .services-story__card { min-height: 0; padding: 24px; }
+  .services-story__card > i { height: 48px; margin-bottom: 24px; width: 48px; }
+  .services-story__card-note { margin-top: 18px; }
 }
 
 @media (max-width: 575px) {

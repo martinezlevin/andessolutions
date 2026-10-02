@@ -100,8 +100,7 @@
   new PureCounter();
 
   /**
-   * From tablet width onward, vertical scrolling moves the services story horizontally.
-   * Small screens retain a conventional stacked layout.
+   * Vertical scrolling moves the services story horizontally on every viewport.
    */
   function initServicesStory() {
     const story = document.querySelector('.services-story');
@@ -111,18 +110,10 @@
     const background = story.querySelector('.services-story__background');
     const panels = Array.from(story.querySelectorAll('.services-story__panel'));
     const progressLabel = story.querySelector('.services-story__progress span');
-    const desktopQuery = window.matchMedia('(min-width: 680px)');
     let animationFrame;
 
     function updateStory() {
       animationFrame = undefined;
-
-      if (!desktopQuery.matches) {
-        track.style.transform = '';
-        background.style.backgroundColor = '';
-        panels.forEach(panel => panel.classList.add('is-active'));
-        return;
-      }
 
       const rect = story.getBoundingClientRect();
       const scrollLength = story.offsetHeight - window.innerHeight;
@@ -139,7 +130,6 @@
       if (!animationFrame) animationFrame = window.requestAnimationFrame(updateStory);
     }
 
-    desktopQuery.addEventListener('change', requestUpdate);
     window.addEventListener('resize', requestUpdate);
     document.addEventListener('scroll', requestUpdate, { passive: true });
     panels[0].classList.add('is-active');
