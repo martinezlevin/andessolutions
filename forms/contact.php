@@ -28,7 +28,7 @@ if ($name === '' || $subject === '' || $message === '' || !filter_var($email, FI
     exit('Completá los campos obligatorios con un email válido.');
 }
 
-$recipient = 'gdmlevin@andessolutions.com.ar';
+$recipient = 'contacto@andessolutions.com.ar';
 $mailSubject = '=?UTF-8?B?' . base64_encode('Nueva consulta web: ' . $subject) . '?=';
 $body = "Nueva consulta desde andessolutions.com.ar\n\n"
     . "Nombre: {$name}\n"
@@ -39,7 +39,7 @@ $body = "Nueva consulta desde andessolutions.com.ar\n\n"
 $headers = [
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
-    'From: Andes Solutions <gdmlevin@andessolutions.com.ar>',
+    'From: Andes Solutions <contacto@andessolutions.com.ar>',
     "Reply-To: {$email}",
     'X-Mailer: Andes Solutions Website',
 ];
