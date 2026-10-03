@@ -100,6 +100,59 @@
   new PureCounter();
 
   /**
+   * Init Typed.js for Hero Title
+   */
+  function initTyped() {
+    const selectTyped = document.querySelector('.typed');
+    if (!selectTyped) return;
+
+    let typed_strings = selectTyped.getAttribute('data-typed-items');
+    if (!typed_strings) return;
+    typed_strings = typed_strings.split(',').map(s => s.trim());
+
+    if (typeof Typed !== 'undefined') {
+      new Typed('.typed', {
+        strings: typed_strings,
+        loop: true,
+        typeSpeed: 60,
+        backSpeed: 30,
+        backDelay: 2000
+      });
+    } else {
+      let itemIdx = 0;
+      let charIdx = 0;
+      let isDeleting = false;
+
+      function typeLoop() {
+        const currentItem = typed_strings[itemIdx];
+        if (isDeleting) {
+          selectTyped.textContent = currentItem.substring(0, charIdx - 1);
+          charIdx--;
+        } else {
+          selectTyped.textContent = currentItem.substring(0, charIdx + 1);
+          charIdx++;
+        }
+
+        let speed = isDeleting ? 30 : 60;
+
+        if (!isDeleting && charIdx === currentItem.length) {
+          speed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          itemIdx = (itemIdx + 1) % typed_strings.length;
+          speed = 300;
+        }
+
+        setTimeout(typeLoop, speed);
+      }
+      typeLoop();
+    }
+  }
+
+  window.addEventListener('load', initTyped);
+
+  /**
    * Send the contact form directly to Web3Forms.
    */
   function initContactForm() {
