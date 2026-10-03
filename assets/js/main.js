@@ -113,7 +113,7 @@
 
     function showMessage(element) {
       [loading, errorMessage, sentMessage].forEach(message => {
-        message.style.display = message === element ? 'block' : 'none';
+        message.style.display = message === element ? 'flex' : 'none';
       });
     }
 
@@ -127,7 +127,7 @@
 
       const accessKey = form.elements.access_key.value.trim();
       if (!accessKey || accessKey === 'TU_ACCESS_KEY') {
-        errorMessage.textContent = 'Falta configurar la clave de envío de Web3Forms.';
+        errorMessage.querySelector('span').textContent = 'Falta configurar la clave de envío de Web3Forms.';
         showMessage(errorMessage);
         return;
       }
@@ -150,7 +150,7 @@
         form.reset();
         showMessage(sentMessage);
       } catch (error) {
-        errorMessage.textContent = error.message || 'No pudimos enviar tu consulta. Intentá nuevamente.';
+        errorMessage.querySelector('span').textContent = error.message || 'No pudimos enviar tu consulta. Intentá nuevamente.';
         showMessage(errorMessage);
       } finally {
         submitButton.disabled = false;

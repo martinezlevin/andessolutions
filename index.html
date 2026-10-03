@@ -428,7 +428,8 @@
 
           <div class="col-lg-7">
 
-<form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST" data-aos="fade-up" data-aos-delay="200">
+<div class="form-container" data-aos="fade-up" data-aos-delay="200">
+<form id="contact-form" class="contact-form form" action="https://api.web3forms.com/submit" method="POST">
 
   <!-- Reemplazá este valor por la Access Key generada en web3forms.com. -->
   <input type="hidden" name="access_key" value="9930388b-eef7-4e19-8d80-c3aa5d086858">
@@ -437,6 +438,12 @@
 
   <input type="hidden" name="from_name" value="Andes Solutions">
 
+  <div class="contact-form__heading">
+    <span>Tu próximo paso</span>
+    <h3>Contanos qué necesitás.</h3>
+    <p>Te respondemos para entender el contexto y pensar una solución posible.</p>
+  </div>
+
   <div class="row gy-4">
 
     <div class="visually-hidden" aria-hidden="true">
@@ -444,43 +451,44 @@
       <input type="checkbox" name="botcheck" id="website-field" tabindex="-1" autocomplete="off">
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 form-group">
       <label for="name-field" class="pb-2">Tu nombre</label>
-      <input type="text" name="name" id="name-field" class="form-control" required>
+      <input type="text" name="name" id="name-field" required>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 form-group">
       <label for="email-field" class="pb-2">Tu email</label>
-      <input type="email" class="form-control" name="email" id="email-field" required>
+      <input type="email" name="email" id="email-field" required>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12 form-group">
       <label for="subject-field" class="pb-2">¿Qué te gustaría mejorar?</label>
-      <input type="text" class="form-control" name="consulta" id="subject-field" required>
+      <input type="text" name="consulta" id="subject-field" required>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12 form-group">
       <label for="message-field" class="pb-2">Contanos un poco más</label>
-      <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
+      <textarea name="message" rows="10" id="message-field" required></textarea>
     </div>
 
     <div class="col-md-12 text-center">
 
-      <div class="loading" aria-live="polite">Enviando tu consulta...</div>
+      <div class="loading" aria-live="polite"><span>Enviando tu consulta...</span></div>
 
-      <div class="error-message" role="alert"></div>
+      <div class="error-message" role="alert"><i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i><span></span></div>
 
       <div class="sent-message" role="status">
-        Recibimos tu consulta. Gracias por contactarnos.
+        <i class="bi bi-check2-circle" aria-hidden="true"></i><span>Recibimos tu consulta. Gracias por contactarnos.</span>
       </div>
 
-      <button type="submit">Enviar consulta</button>
+      <button class="form-submit-btn" type="submit"><span>Enviar consulta</span><i class="bi bi-arrow-up-right" aria-hidden="true"></i></button>
 
     </div>
 
   </div>
 
 </form>
+</div>
           </div><!-- End Contact Form -->
 
         </div>
