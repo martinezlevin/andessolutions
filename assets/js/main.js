@@ -100,6 +100,67 @@
   new PureCounter();
 
   /**
+   * Send the contact form directly to Web3Forms.
+   */
+  function initContactForm() {
+    const form = document.querySelector('#contact-form');
+    if (!form) return;
+
+    const loading = form.querySelector('.loading');
+    const errorMessage = form.querySelector('.error-message');
+    const sentMessage = form.querySelector('.sent-message');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    function showMessage(element) {
+      [loading, errorMessage, sentMessage].forEach(message => {
+        message.style.display = message === element ? 'block' : 'none';
+      });
+    }
+
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const accessKey = form.elements.access_key.value.trim();
+      if (!accessKey || accessKey === 'TU_ACCESS_KEY') {
+        errorMessage.textContent = 'Falta configurar la clave de envío de Web3Forms.';
+        showMessage(errorMessage);
+        return;
+      }
+
+      showMessage(loading);
+      submitButton.disabled = true;
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || 'No pudimos enviar tu consulta. Intentá nuevamente.');
+        }
+
+        form.reset();
+        showMessage(sentMessage);
+      } catch (error) {
+        errorMessage.textContent = error.message || 'No pudimos enviar tu consulta. Intentá nuevamente.';
+        showMessage(errorMessage);
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  }
+
+  initContactForm();
+
+  /**
    * Vertical scrolling moves the services story horizontally on every viewport.
    */
   function initServicesStory() {

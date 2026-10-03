@@ -427,43 +427,60 @@
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-                <div class="visually-hidden" aria-hidden="true">
-                  <label for="website-field">No completar este campo</label>
-                  <input type="text" name="website" id="website-field" tabindex="-1" autocomplete="off">
-                </div>
 
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Tu nombre</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
-                </div>
+<form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST" data-aos="fade-up" data-aos-delay="200">
 
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Tu email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
-                </div>
+  <!-- Reemplazá este valor por la Access Key generada en web3forms.com. -->
+  <input type="hidden" name="access_key" value="9930388b-eef7-4e19-8d80-c3aa5d086858">
 
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">¿Qué te gustaría mejorar?</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
-                </div>
+  <input type="hidden" name="subject" value="Nueva consulta desde Andes Solutions">
 
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Contanos un poco más</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-                </div>
+  <input type="hidden" name="from_name" value="Andes Solutions">
 
-                <div class="col-md-12 text-center">
-                  <div class="loading">Enviando tu consulta...</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Recibimos tu consulta. Gracias por contactarnos.</div>
+  <div class="row gy-4">
 
-                  <button type="submit">Enviar consulta</button>
-                </div>
+    <div class="visually-hidden" aria-hidden="true">
+      <label for="website-field">No completar este campo</label>
+      <input type="checkbox" name="botcheck" id="website-field" tabindex="-1" autocomplete="off">
+    </div>
 
-              </div>
-            </form>
+    <div class="col-md-6">
+      <label for="name-field" class="pb-2">Tu nombre</label>
+      <input type="text" name="name" id="name-field" class="form-control" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="email-field" class="pb-2">Tu email</label>
+      <input type="email" class="form-control" name="email" id="email-field" required>
+    </div>
+
+    <div class="col-md-12">
+      <label for="subject-field" class="pb-2">¿Qué te gustaría mejorar?</label>
+      <input type="text" class="form-control" name="consulta" id="subject-field" required>
+    </div>
+
+    <div class="col-md-12">
+      <label for="message-field" class="pb-2">Contanos un poco más</label>
+      <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
+    </div>
+
+    <div class="col-md-12 text-center">
+
+      <div class="loading" aria-live="polite">Enviando tu consulta...</div>
+
+      <div class="error-message" role="alert"></div>
+
+      <div class="sent-message" role="status">
+        Recibimos tu consulta. Gracias por contactarnos.
+      </div>
+
+      <button type="submit">Enviar consulta</button>
+
+    </div>
+
+  </div>
+
+</form>
           </div><!-- End Contact Form -->
 
         </div>
@@ -523,7 +540,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 
