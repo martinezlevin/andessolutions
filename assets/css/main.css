@@ -1630,30 +1630,43 @@ section,
 
 .contact .form-container {
   background: linear-gradient(#212121, #212121) padding-box,
-              linear-gradient(145deg, transparent 35%, #f08a24, #0f6394) border-box;
-  background-size: 200% 100%;
-  animation: contact-form-gradient 5s ease infinite;
+              linear-gradient(135deg,
+                rgba(254, 97, 4, 0) 0%,
+                rgba(254, 97, 4, 0) 7.5%,
+                #FE6104 28%,
+                #144FC7 72%,
+                rgba(20, 79, 199, 0) 92.5%,
+                rgba(20, 79, 199, 0) 100%) border-box;
+  background-size: 100% 100%, 240% 240%;
+  animation: contact-form-gradient 1.8s ease-in-out infinite;
   border: 2px solid transparent;
   border-radius: 16px;
   box-shadow: 0 20px 48px rgba(24, 59, 114, 0.18);
   box-sizing: border-box;
   color: #fff;
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
+  gap: 20px;
   padding: 32px 24px;
 }
 
 @keyframes contact-form-gradient {
   0%, 100% {
-    background-position: 0% 50%;
+    background-position: center, 0% 0%;
   }
 
   50% {
-    background-position: 100% 50%;
+    background-position: center, 100% 100%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .contact .form-container {
+    animation: none;
+  }
+
+  .contact .info-wrap {
     animation: none;
   }
 }
@@ -2079,9 +2092,28 @@ body {
 }
 
 .contact .info-wrap {
-  background: #212121;
-  border-color: #353535;
+  background: linear-gradient(#212121, #212121) padding-box,
+              linear-gradient(135deg,
+                rgba(254, 97, 4, 0) 0%,
+                rgba(254, 97, 4, 0) 7.5%,
+                #FE6104 28%,
+                #144FC7 72%,
+                rgba(20, 79, 199, 0) 92.5%,
+                rgba(20, 79, 199, 0) 100%) border-box;
+  background-size: 100% 100%, 300% 300%;
+  animation: contact-info-gradient 4.8s ease-in-out infinite;
+  border: 2px solid transparent;
   box-shadow: 0 16px 42px rgba(0, 0, 0, .22);
+}
+
+@keyframes contact-info-gradient {
+  0%, 100% {
+    background-position: center, 0% 0%;
+  }
+
+  50% {
+    background-position: center, 100% 100%;
+  }
 }
 
 .contact .info-item i {
