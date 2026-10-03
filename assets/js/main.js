@@ -15,6 +15,22 @@
   window.addEventListener('load', toggleScrolled);
 
   /**
+   * Keep the navigation progress bar in sync with the page scroll.
+   */
+  function updateScrollProgress() {
+    const progressBar = document.querySelector('#scroll-progress');
+    if (!progressBar) return;
+
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+    progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress / 100))})`;
+  }
+
+  document.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('resize', updateScrollProgress);
+  window.addEventListener('load', updateScrollProgress);
+
+  /**
    * Mobile nav toggle
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
@@ -221,7 +237,6 @@
     if (!story) return;
 
     const track = story.querySelector('.services-story__track');
-    const background = story.querySelector('.services-story__background');
     const panels = Array.from(story.querySelectorAll('.services-story__panel'));
     const progressLabel = story.querySelector('.services-story__progress span');
     let animationFrame;
@@ -235,7 +250,6 @@
       const activeIndex = Math.min(panels.length - 1, Math.round(progress * (panels.length - 1)));
 
       track.style.transform = `translate3d(${-progress * (panels.length - 1) * window.innerWidth}px, 0, 0)`;
-      background.style.backgroundColor = panels[activeIndex].dataset.color;
       progressLabel.textContent = `0${activeIndex + 1}`;
       panels.forEach((panel, index) => panel.classList.toggle('is-active', index === activeIndex));
     }
