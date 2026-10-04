@@ -26,6 +26,12 @@ const initFluid = () => {
         TRANSPARENT: true,
     }
 
+    // Andes logo palette: orange #FE6104 and blue #144FC7.
+    const smokeColors = [
+        { r: 254 / 255, g: 97 / 255, b: 4 / 255 },
+        { r: 20 / 255, g: 79 / 255, b: 199 / 255 }
+    ];
+
     function pointerPrototype() {
         this.id = -1;
         this.texcoordX = 0;
@@ -1026,13 +1032,14 @@ const initFluid = () => {
         return delta;
     }
 
-    // to generate multicolor
+    // Select only from the Andes logo palette, preserving the subtle smoke opacity.
     function generateColor () {
-        let c = HSVtoRGB(Math.random(), 1.0, 1.0);
-        c.r *= 0.15;
-        c.g *= 0.15;
-        c.b *= 0.15;
-        return c;
+        const color = smokeColors[Math.floor(Math.random() * smokeColors.length)];
+        return {
+            r: color.r * 0.15,
+            g: color.g * 0.15,
+            b: color.b * 0.15
+        };
     }
 
     function HSVtoRGB(h, s, v) {
