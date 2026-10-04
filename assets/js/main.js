@@ -34,13 +34,24 @@
    * Mobile nav toggle
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  const mobileNavBackdrop = document.querySelector('.mobile-nav-backdrop');
 
-  function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+  function mobileNavToggle(forceOpen) {
+    if (!mobileNavToggleBtn) return;
+
+    const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !document.body.classList.contains('mobile-nav-active');
+    document.body.classList.toggle('mobile-nav-active', isOpen);
+    mobileNavToggleBtn.setAttribute('aria-expanded', String(isOpen));
+    mobileNavToggleBtn.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
   }
-  mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+
+  if (mobileNavToggleBtn) {
+    mobileNavToggleBtn.addEventListener('click', () => mobileNavToggle());
+  }
+
+  if (mobileNavBackdrop) {
+    mobileNavBackdrop.addEventListener('click', () => mobileNavToggle(false));
+  }
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -48,7 +59,7 @@
   document.querySelectorAll('#navmenu a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
       if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
+        mobileNavToggle(false);
       }
     });
 
